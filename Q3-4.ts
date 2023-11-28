@@ -1,43 +1,28 @@
-class Person {
-  private firstName: string;
-  private lastName: string;
-  private age: number;
+class Movie {
+    constructor(title, studio, rating = "PG") {
+        this.title = title;
+        this.studio = studio;
+        this.rating = rating;
+    }
 
-  constructor(firstName: string, lastName: string, age: number) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-  }
-
-  getFullName(): string {
-    return `${this.firstName} ${this.lastName}`;
-  }
-
-  getAge(): number {
-    return this.age;
-  }
+    static getPG(movies) {
+        return movies.filter(movie => movie.rating === "PG");
+    }
 }
 
-class UberPriceCalculator {
-  calculatePrice(distanceInMiles: number, durationInMinutes: number): number {
-    // You can implement your pricing logic here
-    // For simplicity, let's assume a base price of $5 and $1 per mile and $0.2 per minute.
-    const basePrice = 5;
-    const pricePerMile = 1;
-    const pricePerMinute = 0.2;
+// Creating an instance of Movie with title, studio, and rating
+const casinoRoyale = new Movie("Casino Royale", "Eon Productions", "PG-13");
 
-    const totalPrice = basePrice + distanceInMiles * pricePerMile + durationInMinutes * pricePerMinute;
+// Example array of Movie instances
+const moviesArray = [
+    new Movie("Movie1", "Studio1", "PG"),
+    new Movie("Movie2", "Studio2", "R"),
+    new Movie("Movie3", "Studio3", "PG-13"),
+    // ... add more movies as needed
+];
 
-    return totalPrice;
-  }
-}
+// Filtering movies with a rating of "PG"
+const pgMovies = Movie.getPG(moviesArray);
 
-// Usage example:
-const person = new Person('John', 'Doe', 30);
-console.log(`Person: ${person.getFullName()}, Age: ${person.getAge()}`);
-
-const priceCalculator = new UberPriceCalculator();
-const distanceInMiles = 10;
-const durationInMinutes = 20;
-const totalPrice = priceCalculator.calculatePrice(distanceInMiles, durationInMinutes);
-console.log(`Uber Price: $${totalPrice}`);
+console.log(casinoRoyale);
+console.log(pgMovies);
